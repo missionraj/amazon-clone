@@ -3,6 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './header/Header';
+
+import Home from './home/Home';
 function App() {
   return (
     <>
@@ -18,7 +20,7 @@ function App() {
               </Route>
               <Route path="/">
                 <Header />
-                <div> this is home page </div>
+                <Home />
               </Route>
           </Switch>
         </div>
