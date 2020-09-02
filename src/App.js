@@ -6,17 +6,18 @@ import Header from './header/Header';
 function App() {
   return (
     <>
-      <Header />
       <Router>
         <div className="App">
           <Switch>
               <Route path="/checkout">
+                <Header />
                 <div> this is check out page </div>
               </Route>
               <Route path="/login">
                 <div> this is login page </div>
               </Route>
               <Route path="/">
+                <Header />
                 <div> this is home page </div>
               </Route>
           </Switch>
