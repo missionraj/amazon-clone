@@ -1,7 +1,23 @@
 import React from 'react'
 import './Product.css';
 import StarIcon from '@material-ui/icons/Star';
-function Product({title, price, rating, image}) {
+import { useDataLayerValue } from '../StateProvider'
+
+function Product({id,title, price, rating, image}) {
+    const [state, dispatch ] = useDataLayerValue();
+    const addToBasket = () => { 
+        // add to basket
+        dispatch({
+            type:'ADD_TO_BASKET',
+            item : { 
+                id:id,
+                price:price,
+                title:title,
+                rating:rating,
+                image:image
+            }
+        });
+    } 
     return (
         <div className="product">
             <div className="product__info"> 
@@ -17,7 +33,7 @@ function Product({title, price, rating, image}) {
                 </div>
             </div>  
             <img src={image} alt="" />
-            <button> Add To basket </button>          
+            <button onClick={addToBasket}> Add To basket </button>          
         </div>
     )
 }
