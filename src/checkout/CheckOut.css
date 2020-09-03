@@ -1,0 +1,7 @@
+.checkout{
+    display: flex;
+    background: #ffffff;
+}
+.checkout__ad{
+    width: 100%;
+}
