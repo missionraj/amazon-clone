@@ -1,11 +1,5 @@
 export const initialState = { 
-    basket:[{
-        id:"12345",
-        price:3400,
-        rating:4,
-        title:'KRK Classic 5 Professional Bi-Amp 5" Powered Studio Monitor',
-        image:'https://images-na.ssl-images-amazon.com/images/I/814xI4eejuL._SL1500_.jpg'
-    }],
+    basket:[],
     user:null
 }
 
@@ -13,6 +7,11 @@ export const getBasketTotal = (basket) => basket.reduce((amount,item)=> item.pri
 
 const reducer = (state, action)=> { 
     switch (action.type) {
+        case "SET_USER" : 
+            return { 
+                ...state,
+                user:action.user
+            }
         case "ADD_TO_BASKET":
             return { 
                 state,

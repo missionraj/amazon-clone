@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -6,8 +6,35 @@ import Header from './header/Header';
 
 import Home from './home/Home';
 import CheckOut from './checkout/CheckOut';
+import Login from './login/Login'
+
+import { useDataLayerValue } from './StateProvider';
+import { auth } from './firebase'
 
 function App() {
+  const [{user}, dispatch ] = useDataLayerValue();
+  useEffect(()=> { 
+    const unSubscribe = auth.onAuthStateChanged(authUser=> { 
+      if (authUser) {
+        // user is logged in
+        dispatch({
+          type:"SET_USER",
+          user:authUser
+        })
+      } else {
+        // user  not logged in
+        dispatch({
+          type:"SET_USER",
+          user:null
+        })
+      }
+    })
+    return () => { 
+        // clean up
+        unSubscribe();
+    }
+  },[])
+  console.log('this is the user', user);
   return (
     <>
       <Router>
@@ -18,7 +45,7 @@ function App() {
                 <CheckOut />
               </Route>
               <Route path="/login">
-                <div> this is login page </div>
+                <Login />
               </Route>
               <Route path="/">
                 <Header />

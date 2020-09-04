@@ -9,7 +9,7 @@ function SubTotal() {
     return (
         <div className="subtotal">
             <div> 
-                SubTotal (2 items) : {getBasketTotal(basket)}
+                SubTotal ({basket.length} items) : {getBasketTotal(basket)}
             </div>
             <small className="subtotal__gift"> 
                 <input type="checkbox" />  This order contains gift
